@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: ordertrack-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ordertrack
+      MYSQL_USER: ordertrack
+      MYSQL_PASSWORD: ordertrack
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - ordertrack_mysql_data:/var/lib/mysql
+
+volumes:
+  ordertrack_mysql_data:
