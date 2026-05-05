@@ -1,10 +1,12 @@
 package com.ordertrack.orderdertrack.api.product.model.entity;
 
 
+import com.ordertrack.orderdertrack.api.orderline.model.entity.OrderLine;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,7 +20,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false, precision = 10, scale = 2)
@@ -29,6 +31,9 @@ public class Product {
 
     @Column(nullable = false)
     private Boolean active;
+
+    @OneToOne(mappedBy = "product")
+    private OrderLine orderLine;
 
     public Product(String name, BigDecimal price, Integer stock, Boolean active) {
         this.name = name;
