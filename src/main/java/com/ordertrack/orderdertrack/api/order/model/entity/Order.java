@@ -37,7 +37,7 @@ public class Order {
     @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
     private Instant createdAt;
 
-    @Column(name=" updated_at", nullable = false, insertable = false, updatable = false)
+    @Column(name="updated_at", nullable = false, insertable = false, updatable = false)
     private Instant updatedAt;
 
     @Column(nullable = false, precision = 10, scale = 2)
