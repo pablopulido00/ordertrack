@@ -50,7 +50,11 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderLine> orderLines = new ArrayList<>();
 
-
+    public Order (Customer customer){
+        this.customer = customer;
+        this.status = OrderStatus.DRAFT;
+        this.total = BigDecimal.ZERO;
+    }
 
 
 }

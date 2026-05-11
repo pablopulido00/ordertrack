@@ -7,8 +7,6 @@ public record OrderCreateRequest (
         @NotNull
         Long customerId
 
-
-
 )
 
 { }

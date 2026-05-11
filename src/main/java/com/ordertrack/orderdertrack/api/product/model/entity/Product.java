@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -32,8 +33,8 @@ public class Product {
     @Column(nullable = false)
     private Boolean active;
 
-    @OneToOne(mappedBy = "product")
-    private OrderLine orderLine;
+    @OneToMany(mappedBy = "product")
+    private List<OrderLine> orderLines = new ArrayList<>();
 
     public Product(String name, BigDecimal price, Integer stock, Boolean active) {
         this.name = name;
