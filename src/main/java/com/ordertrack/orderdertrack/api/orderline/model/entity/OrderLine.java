@@ -24,7 +24,7 @@ public class OrderLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "order_lines", nullable = false, length = 150)
+    @Column(name = "product_name", nullable = false, length = 150)
     private String name;
 
     @Column(name = "unit_price", nullable = false, scale = 10, precision = 2)
