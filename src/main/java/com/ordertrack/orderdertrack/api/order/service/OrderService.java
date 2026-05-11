@@ -28,7 +28,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRespository;
-    private OrderLineRepository orderLineRepository;
+    private final OrderLineRepository orderLineRepository;
     private final OrderMapper orderMapper;
 
     public OrderAdminResponse createOrder (OrderCreateRequest request){
