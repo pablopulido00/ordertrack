@@ -1,0 +1,2 @@
+ALTER TABLE order_lines
+ADD COLUMN product_name VARCHAR(150) NOT NULL;

@@ -37,7 +37,7 @@ public class Order {
     @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
     private Instant createdAt;
 
-    @Column(name=" updated_at", nullable = false, insertable = false, updatable = false)
+    @Column(name="updated_at", nullable = false, insertable = false, updatable = false)
     private Instant updatedAt;
 
     @Column(nullable = false, precision = 10, scale = 2)
@@ -50,7 +50,11 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderLine> orderLines = new ArrayList<>();
 
-
+    public Order (Customer customer){
+        this.customer = customer;
+        this.status = OrderStatus.DRAFT;
+        this.total = BigDecimal.ZERO;
+    }
 
 
 }
