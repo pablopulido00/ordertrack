@@ -47,7 +47,6 @@ public class OrderLine {
 
 
     public OrderLine(Order order, Product product, Integer quantity) {
-        this.id = id;
         this.order = order;
         this.product = product;
         this.name = product.getName();

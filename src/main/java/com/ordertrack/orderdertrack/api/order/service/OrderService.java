@@ -52,26 +52,15 @@ public class OrderService {
     }
 
 
-    public void recalculateTotal(Order order){
-
-        List<OrderLine> orderLines = orderLineRepository.findByOrderId(order.getId());
-
+    public void recalculateTotal(Order order) {
 
         BigDecimal total = BigDecimal.ZERO;
 
-
-        for (OrderLine line : orderLines){
-
+        for (OrderLine line : order.getOrderLines()) {
             total = total.add(line.getLineTotal());
-
         }
 
         order.setTotal(total);
-
-        orderRepository.save(order);
-
-
-
     }
 
 
