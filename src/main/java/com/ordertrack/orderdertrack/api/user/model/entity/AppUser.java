@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class AppUser {
 
 
     @Id
@@ -31,7 +31,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(String email, String passwordHash, Role role) {
+    public AppUser(String email, String passwordHash, Role role) {
         this.email = email;
         this.passwordHash = passwordHash;
         this.role = role;
