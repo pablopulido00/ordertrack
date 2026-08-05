@@ -2,16 +2,47 @@ services:
   mysql:
     image: mysql:8.0
     container_name: ordertrack-mysql
-    restart: unless-stopped
+
     environment:
       MYSQL_DATABASE: ordertrack
       MYSQL_USER: ordertrack
       MYSQL_PASSWORD: ordertrack
       MYSQL_ROOT_PASSWORD: root
+
     ports:
       - "3307:3306"
+
     volumes:
-      - ordertrack_mysql_data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: ordertrack-app
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/ordertrack
+      DB_USERNAME: ordertrack
+      DB_PASSWORD: ordertrack
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: 86400000
+
+    ports:
+      - "8080:8080"
+
 
 volumes:
-  ordertrack_mysql_data:
+  mysql-data:
