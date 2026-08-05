@@ -13,10 +13,10 @@
     </parent>
 
     <groupId>com.ordertrack</groupId>
-    <artifactId>orderdertrack</artifactId>
+    <artifactId>ordertrack</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>orderdertrack</name>
-    <description>Demo project for Spring Boot</description>
+    <name>OrderTrack</name>
+    <description>REST API for managing customers, products and orders with JWT authentication and role-based authorization</description>
 
     <properties>
         <java.version>17</java.version>
