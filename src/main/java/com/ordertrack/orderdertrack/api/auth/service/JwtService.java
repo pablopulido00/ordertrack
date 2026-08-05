@@ -1,11 +1,13 @@
 package com.ordertrack.orderdertrack.api.auth.service;
 
 
+import com.ordertrack.orderdertrack.api.auth.config.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.micrometer.core.instrument.config.validate.Validated;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,19 +16,19 @@ import java.security.Key;
 import java.util.Date;
 
 @Service
+@RequiredArgsConstructor
 public class JwtService {
 
 
-    private static final String SECRET_KEY = "bXktc3VwZXItc2VjcmV0LWtleS1teS1zdXBlci1zZWNyZXQta2V5LW15LXN1cGVyLXNlY3JldC1rZXk=";
+    private final JwtProperties jwtproperties;
 
-    private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 24 ;
 
 
     public String generateToken(UserDetails userDetails){
             return Jwts.builder()
                     .subject(userDetails.getUsername())
                     .issuedAt(new Date(System.currentTimeMillis()))
-                    .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                    .expiration(new Date(System.currentTimeMillis() + jwtproperties.expiration()))
                     .signWith(getSigninKey())
                     .compact();
 
@@ -64,7 +66,7 @@ public class JwtService {
 
 
     private SecretKey getSigninKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
+        byte[] keyBytes = Decoders.BASE64.decode(jwtproperties.secret());
         return Keys.hmacShaKeyFor(keyBytes);
 
     }

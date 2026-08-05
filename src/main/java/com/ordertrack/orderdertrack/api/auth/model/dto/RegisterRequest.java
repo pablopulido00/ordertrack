@@ -13,10 +13,7 @@ public record RegisterRequest(
         String email,
 
         @NotBlank
-        String password,
-
-        @NotNull
-        Role role
+        String password
 
 
 ) {
