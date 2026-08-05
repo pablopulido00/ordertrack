@@ -1,8 +1,14 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3307/ordertrack
-    username: ordertrack
-    password: ordertrack
+    url: ${DB_URL:jdbc:mysql://localhost:3307/ordertrack}
+    username: ${DB_USERNAME:ordertrack}
+    password: ${DB_PASSWORD:ordertrack}
+
   jpa:
     hibernate:
       ddl-auto: validate
+
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration: ${JWT_EXPIRATION:86400000}

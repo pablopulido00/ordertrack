@@ -7,9 +7,8 @@ public record AuthResponse(
 
         Long id,
         String email,
-        Role role
-
-        //String token
+        Role role,
+        String token
 
 
 
